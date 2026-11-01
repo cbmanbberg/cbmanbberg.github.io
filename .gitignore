@@ -1,0 +1,8 @@
+rohdaten/*
+!rohdaten/.gitkeep
+web/
+__pycache__/
+*.pyc
+# Pläne und Excel nicht im öffentlichen Repo (Urheberrecht Planer, privat)
+docs/plaene/*
+docs/Baumkarte.xlsx

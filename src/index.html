@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Scheune Umbau – 3D Modell</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<div id="c"></div>
+<div id="head"><div class="t"><h1>Umbau Scheune zum Wohnhaus</h1><p>3D nach Werkplanung 2021 (EG, OG, Schnitte AA/BB) · Bestand nach Plänen 1911/Füssinger · Gelände: LGL-BW (2025) Datenlizenz Deutschland, Namensnennung 2.0</p></div></div>
+<div id="toast" hidden></div>
+<div id="sheet" class="card" hidden>
+  <div class="sh-head"><b id="shTitle">Baum</b><button id="shClose" aria-label="Schließen">✕</button></div>
+  <div class="sh-grid">
+    <label>Nr<input id="fNr"></label>
+    <label>Art<input id="fArt" list="artList" autocomplete="off"></label>
+    <label class="wide">Sorte<input id="fSorte" list="sorteList" autocomplete="off"></label>
+    <label>Gepflanzt<input id="fGep" inputmode="numeric"></label>
+    <label>Geschnitten<input id="fGes" inputmode="numeric"></label>
+    <label>Status<select id="fStatus"><option value="aktiv">aktiv</option><option value="abgestorben">abgestorben</option><option value="gefällt">gefällt</option></select></label>
+    <label class="wide">Notiz<input id="fNotiz"></label>
+  </div>
+  <div id="shPos" class="muted"></div>
+  <div class="sh-btn"><button id="shSave" class="on">Speichern</button><button id="shFell">Fällen</button><button id="shMove">Versetzen</button><button id="shDel" class="danger">Löschen</button></div>
+  <div id="shMsg" class="muted"></div>
+</div>
+<div id="list" class="card" hidden>
+  <div class="sh-head"><b>Baumkarte</b><button id="listClose" aria-label="Schließen">✕</button></div>
+  <div id="listInfo" class="muted"></div>
+  <div class="tbl"><table><thead><tr><th>Nr</th><th>Art</th><th>Sorte</th><th>gepfl.</th><th>Status</th><th></th></tr></thead><tbody id="listBody"></tbody></table></div>
+</div>
+<datalist id="artList"></datalist><datalist id="sorteList"></datalist>
+<div id="panel">
+  <button id="toggle">Menü ▾</button>
+  <div class="row"><span class="lab">Geschoss</span>
+    <button data-lvl="all" class="on">Alles</button><button data-lvl="og">bis OG</button><button data-lvl="eg">nur EG</button>
+  </div>
+  <div class="row"><span class="lab">Ansicht</span>
+    <button data-cam="env">Umgebung</button><button data-cam="out">Gesamt</button><button data-cam="barn">Scheune</button><button data-cam="hof">Auffahrt</button><button data-cam="top">Draufsicht</button><button data-cam="in">Innen Essen</button>
+  </div>
+  <div class="row"><span class="lab">Zeigen</span>
+    <button data-t="roof" class="on">Dachhaut</button><button data-t="truss" class="on">Dachstuhl</button><button data-t="nb" class="on">Bauernhaus/Stall</button><button data-t="env" class="on">Gelände</button><button data-t="ramp" class="on">Auffahrt 1911</button><button data-t="furn" class="on">Möbel</button><button data-t="labels" class="on">Räume</button>
+  </div>
+  <div class="row"><span class="lab">Bäume</span>
+    <button data-bk="show" class="on">Baumkarte</button><button data-bk="plant">Pflanzen</button><button data-bk="list">Liste</button><button data-bk="xlsx">Excel</button><button data-cam="orchard">Obstwiese</button>
+  </div>
+  <div class="row"><span class="lab">Schnitt</span><input id="cut" type="range" min="-1" max="14" step="0.05" value="14"><span id="cutv" style="font-size:11px;width:46px;color:#6b645b">aus</span></div>
+</div>
+
+<script src="env.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
